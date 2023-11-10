@@ -4,8 +4,8 @@ import json
 import hashlib
 import os
 
-packagesPath = "package_air_index.json"
-packagesCNPath = "package_air_cn_index.json"
+packagesPath = "package_py32_index.json"
+packagesCNPath = "package_py32_cn_index.json"
 
 GCCVersion = "12.2.1-1.2"
 AirISPVersion = ""  # 不定义具体的版本，在GetAirISPVersion函数中创造
@@ -104,7 +104,7 @@ def DownloadAndCheck(url, fileName, host, suffixName):
     temp['size'] = ComputeSize(tempPath)
 
     tempCn = temp.copy()
-    tempCn['url'] = "https://arduino.luatos.com/" + fileName + suffixName
+    tempCn['url'] = "https://arduino.py32.halfsweet.cn/" + fileName + suffixName
     return temp, tempCn
 
 
@@ -221,45 +221,45 @@ def CMSIS():
     return data, dataCn
 
 
-def PlatformsAirMCU(version):
-    fileName = "AirMCU-" + version + ".zip"
-    url = "https://github.com/Air-duino/Arduino-AirMCU/releases/download/" + version + "/" + fileName
+def PlatformsPY32(version):
+    fileName = "Arduino-PY32-" + version + ".zip"
+    url = "https://github.com/py32duino/Arduino-PY32/releases/download/" + version + "/" + fileName
     downloadFile(url)
     data = {}
     dataCn = {}
-    data['name'] = "Air MCU"
-    data['architecture'] = "AirMCU"
+    data['name'] = "PY32 Arduino"
+    data['architecture'] = "PY32"
     data['version'] = version
     data['category'] = "Contributed"
-    data['help'] = {'online': "https://arduino.luatos.com"}
+    data['help'] = {'online': "https://arduino.py32.halfsweet.cn"}
     data['url'] = url
     data['archiveFileName'] = fileName
     data['checksum'] = "SHA-256:" + ComputeSHA256(fileName)
     data['size'] = ComputeSize(fileName)
     data['boards'] = [{'name': "Air001"}]
-    data['toolsDependencies'] = [{'packager': "AirM2M", 'name': "xpack-arm-none-eabi-gcc", 'version': GCCVersion},
-                                 {'packager': "AirM2M", 'name': "CMSIS", 'version': CMSISVersion},
-                                 {'packager': "AirM2M", 'name': "AirISP", 'version': AirISPVersion}]
+    data['toolsDependencies'] = [{'packager': "PY32Duino", 'name': "xpack-arm-none-eabi-gcc", 'version': GCCVersion},
+                                 {'packager': "PY32Duino", 'name': "CMSIS", 'version': CMSISVersion},
+                                 {'packager': "PY32Duino", 'name': "AirISP", 'version': AirISPVersion}]
     dataCn = data.copy()
-    dataCn['url'] = "https://arduino.luatos.com/" + fileName
+    dataCn['url'] = "https://arduino.py32.halfsweet.cn/" + fileName
     return data, dataCn
 
 
-def PackagesAirM2M():
+def PackagesPY32Duino():
     data = {}
     dataCn = {}
-    data['name'] = "AirM2M"
-    data['maintainer'] = "AirM2M"
-    data['websiteURL'] = "https://arduino.luatos.com"
+    data['name'] = "PY32Duino"
+    data['maintainer'] = "PY32Duino"
+    data['websiteURL'] = "https://arduino.py32.halfsweet.cn"
     data['email'] = "HalfSweet@HalfSweet.cn"
-    data['help'] = {'online': "https://arduino.luatos.com"}
+    data['help'] = {'online': "https://arduino.py32.halfsweet.cn"}
     dataCn = data.copy()
     platforms = []
     platformsCn = []
 
-    PlatformsVersion.extend(GetRepoVersion("Air-duino", "Arduino-AirMCU"))
+    PlatformsVersion.extend(GetRepoVersion("PY32Duino", "Arduino-PY32"))
     for item in PlatformsVersion:
-        temp, tempCn = PlatformsAirMCU(item)
+        temp, tempCn = PlatformsPY32(item)
         platforms.append(temp)
         platformsCn.append(tempCn)
     data['platforms'] = platforms
@@ -287,7 +287,7 @@ def PackagesAirM2M():
 def Encode():
     data = {}
     dataCn = {}
-    temp, tempCn = PackagesAirM2M()
+    temp, tempCn = PackagesPY32Duino()
     data['packages'] = [temp]
     dataCn['packages'] = [tempCn]
     json_str = json.dumps(data, indent=2)
