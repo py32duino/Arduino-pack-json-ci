@@ -37,5 +37,4 @@ jobs:
           coscli-version: 'v0.12.0-beta' # Optional, default to 'v0.12.0-beta'.  Use 'latest' to get the latest version.
       - run: |
           coscli sync ./temp cos://${{ secrets.COS_BUCKET }}/release --recursive --exclude "temp file path.txt" --thread-num 20
-          coscli sync . cos://${{ secrets.COS_BUCKET }}/release --include "*/.json" --thread-num 20
 
