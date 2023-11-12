@@ -5,7 +5,7 @@ import hashlib
 import os
 
 packagesPath = "./temp/package_py32_index.json"
-packagesCNPath = "/temp/package_py32_cn_index.json"
+packagesCNPath = "./temp/package_py32_cn_index.json"
 
 cnUrlBase = "https://arduino.py32.halfsweet.cn/releases/"
 
