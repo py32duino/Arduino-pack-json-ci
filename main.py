@@ -7,6 +7,8 @@ import os
 packagesPath = "package_py32_index.json"
 packagesCNPath = "package_py32_cn_index.json"
 
+cnUrlBase = "https://arduino.py32.halfsweet.cn/releases/"
+
 GCCVersion = "12.2.1-1.2"
 AirISPVersion = ""  # 不定义具体的版本，在GetAirISPVersion函数中创造
 CMSISVersion = "5.7.0"
@@ -104,7 +106,7 @@ def DownloadAndCheck(url, fileName, host, suffixName):
     temp['size'] = ComputeSize(tempPath)
 
     tempCn = temp.copy()
-    tempCn['url'] = "https://arduino.py32.halfsweet.cn/" + fileName + suffixName
+    tempCn['url'] = cnUrlBase + fileName + suffixName
     return temp, tempCn
 
 
@@ -241,7 +243,7 @@ def PlatformsPY32(version):
                                  {'packager': "PY32Duino", 'name': "CMSIS", 'version': CMSISVersion},
                                  {'packager': "PY32Duino", 'name': "AirISP", 'version': AirISPVersion}]
     dataCn = data.copy()
-    dataCn['url'] = "https://arduino.py32.halfsweet.cn/" + fileName
+    dataCn['url'] = cnUrlBase + fileName
     return data, dataCn
 
 
