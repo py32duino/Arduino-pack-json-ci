@@ -9,7 +9,7 @@ packagesCNPath = "package_py32_cn_index.json"
 
 cnUrlBase = "https://arduino.py32.halfsweet.cn/releases/"
 
-GCCVersion = "12.2.1-1.2"
+GCCVersion = "13.2.1-1.1"
 AirISPVersion = ""  # 不定义具体的版本，在GetAirISPVersion函数中创造
 CMSISVersion = "5.7.0"
 PlatformsVersion = []
