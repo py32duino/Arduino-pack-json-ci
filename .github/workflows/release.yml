@@ -24,7 +24,7 @@ jobs:
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "package_py32_index.json,package_py32_cn_index.json"
+          artifacts: "./temp/package_py32_index.json, ./temp/package_py32_cn_index.json"
           tag: "Nightly"
           allowUpdates: true
       
